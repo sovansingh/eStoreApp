@@ -11,9 +11,13 @@
     <select
       class="w-auto bg-gray-300 h-full border-none font-semibold px-2 pr-5"
     >
-      <option value="">Men</option>
+      @for(category of categoryStore.topLevelCategories(); track $index){
+      <option value="">{{category.category}}</option>
+      }
+
+      <!-- <option value="">Men</option>
       <option value="">Women</option>
-      <option value="">kids</option>
+      <option value="">kids</option> -->
     </select>
     <input
       class="w-full h-full border-none outline-none px-3"
