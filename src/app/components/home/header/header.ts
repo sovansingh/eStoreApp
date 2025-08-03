@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faSearch,
@@ -7,6 +7,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import { CategoryStoreItem } from '../services/category/categories.storeItem';
+import { SearchKeyword } from '../types/SearchKeyword.type';
 
 @Component({
   selector: 'app-header',
@@ -20,5 +21,14 @@ export class Header {
   faHeart = faHeart;
   faShoppingCart = faShoppingCart;
 
+  readonly searchClicked = output<SearchKeyword>();
+
   constructor(public categoryStore: CategoryStoreItem) {}
+
+  onClickSearch(keyword: string, categoryId: string): void {
+    this.searchClicked.emit({
+      categoryId: parseInt(categoryId),
+      keyword: keyword,
+    });
+  }
 }
